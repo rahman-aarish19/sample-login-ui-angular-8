@@ -20,9 +20,10 @@
                 </li> -->
                 <button *ngIf="currentUser" (click)="logout()" type="button" class="btn btn-outline-light btn-nav"
                     style="margin-right: 10px;">Logout</button>
-                <button *ngIf="!currentUser" type="button" class="btn btn-outline-light btn-nav"
+                <button *ngIf="!currentUser" (click)="login()" type="button" class="btn btn-outline-light btn-nav"
                     style="margin-right: 10px;">Sign in</button>
-                <button *ngIf="!currentUser" type="button" class="btn btn-light btn-nav">Register</button>
+                <button *ngIf="!currentUser" (click)="registr()" type="button"
+                    class="btn btn-light btn-nav">Register</button>
             </ul>
 
         </div>

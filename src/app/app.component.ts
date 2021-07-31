@@ -19,9 +19,17 @@ export class AppComponent {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
         if (this.authenticationService.currentUserValue && !this.authenticationService.currentUserValue.isAuditor) {
             console.log(this.authenticationService.currentUserValue.isAuditor);
-            
+
             this.router.navigate(['/']);
         }
+    }
+
+    login() {
+        this.router.navigate(['/login']);
+    }
+
+    registr() {
+        this.router.navigate(['/register']);
     }
 
     logout() {
