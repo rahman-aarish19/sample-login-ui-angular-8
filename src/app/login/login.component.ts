@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
     // to get client's ip address.
     getClientIPAddress() {
         this._http.get('https://geolocation-db.com/json/').subscribe((res: any) => {
-            this.ipAddress = res.IPv4; console.log(res); console.log('21');
+            this.ipAddress = res.IPv4;
         }, err => {
-            console.log(err);
+            this.alertService.error(err);
         })
     }
 

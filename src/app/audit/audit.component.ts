@@ -1,5 +1,6 @@
 import { AuditService } from '@/_services/audit.service';
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '@/_services';
 
 @Component({ templateUrl: 'audit.component.html' })
 export class AuditComponent implements OnInit {
@@ -9,7 +10,10 @@ export class AuditComponent implements OnInit {
     tableSize = 7;
     tableSizes = [3, 6, 9, 12];
 
-    constructor(private _auditService: AuditService) { }
+    constructor(
+        private _auditService: AuditService,
+        private alertService: AlertService
+    ) { }
 
     ngOnInit() {
         this.getAll();
@@ -17,8 +21,10 @@ export class AuditComponent implements OnInit {
 
     private getAll() {
         this._auditService.getAll().subscribe(data => {
-            this.datasource = data; console.log(data)
-        }, err => { console.error(err); })
+            this.datasource = data;
+        }, err => {
+            this.alertService.error(err);
+        })
     }
 
     onTableDataChange(event) {

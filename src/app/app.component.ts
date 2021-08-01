@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from './_services';
+import { AuthenticationService, AlertService } from './_services';
 import { User } from './_models';
 
 import './_content/app.less';
@@ -14,7 +14,8 @@ export class AppComponent {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        private _auditService: AuditService
+        private _auditService: AuditService,
+        private alertService: AlertService
     ) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
         if (this.authenticationService.currentUserValue && !this.authenticationService.currentUserValue.isAuditor) {
@@ -45,7 +46,7 @@ export class AppComponent {
                 this.router.navigate(['/login']);
             },
             err => {
-                console.error(err);
+                this.alertService.error(err);
                 this.authenticationService.logout();
                 this.router.navigate(['/login']);
             }
